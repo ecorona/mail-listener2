@@ -104,13 +104,6 @@ function parseUnread() {
       self.emit('error', err);
     } else if (results.length > 0) {
       
-      self.imap.setFlags(results, ['\\Seen'], function (err) {
-        if (err) {
-          console.log(JSON.stringify(err, null, 2));
-        }
-      });
-
-
       async.each(results, function (result, callback) {
         var f = self.imap.fetch(result, {
           bodies: '',
